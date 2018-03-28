@@ -1,0 +1,26 @@
+class CreateSocialDeviseTables < ActiveRecord::Migration<%= migration_version %>
+  def change
+    create_table "profiles", force: :cascade do |t|
+      t.bigint "user_id"
+      t.string "provider", null: false
+      t.string "uid", null: false
+      t.string "access_token"
+      t.string "access_secret"
+      t.string "name"
+      t.string "nickname"
+      t.string "email"
+      t.string "url"
+      t.string "image"
+      t.string "description"
+      t.date "birthday"
+      t.text "other"
+      t.text "credentials"
+      t.text "raw_info"
+      t.datetime "created_at", null: false
+      t.datetime "updated_at", null: false
+    end
+
+    add_index :profiles, [:provider, :uid], unique: true
+    add_index :profiles, [:user_id]
+  end
+end

@@ -5,3 +5,12 @@ spec/dummy/db/*.sqlite3
 spec/dummy/db/*.sqlite3-journal
 spec/dummy/log/*.log
 spec/dummy/tmp/
+
+# Ignore other unneeded files.
+*.swp
+*~
+.#*
+.project
+.DS_Store
+.idea
+TAGS

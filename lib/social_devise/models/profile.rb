@@ -1,15 +1,21 @@
 module SocialDevise
   class Profile < ActiveRecord::Base
-    belongs_to :user
+    belongs_to :user # TODO: Be resource_class of Devise
+    store :other
 
     validates :uid, uniqueness: { scope: :provider }
 
     validate :another_profile_presence, on: :destroy
 
-    def self.fetch(auth_hash)
-      profile = find_or_initialize_by(uid: auth_hash[:uid], provider: auth_hash[:provider])
-      profile.attributes = auth_hash
+    def self.fetch(attributes)
+      profile = find_or_initialize_by(uid: attributes[:uid], provider: attributes[:provider])
+      profile.update!(attributes)
       profile
+    end
+
+    def to_resource
+      self.user = User.find_or_initialize_by(uid: uid, provider: provider) unless user
+      user
     end
 
     private
