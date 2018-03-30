@@ -9,6 +9,7 @@ module SocialDevise
 
     def self.fetch(attributes)
       profile = find_or_initialize_by(uid: attributes[:uid], provider: attributes[:provider])
+      profile.to_resource
       profile.update!(attributes)
       profile
     end
@@ -16,6 +17,11 @@ module SocialDevise
     def to_resource
       self.user = User.find_or_initialize_by(uid: uid, provider: provider) unless user
       user
+    end
+
+    def user!(user)
+      self.user ||= user
+      save!
     end
 
     private
