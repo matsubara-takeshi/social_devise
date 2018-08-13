@@ -1,6 +1,6 @@
 module SocialDevise
   class Profile < ActiveRecord::Base
-    belongs_to :user # TODO: Be resource_class of Devise
+    belongs_to :user, optional: true # TODO: Be resource_class of Devise
     store :other
 
     validates :uid, uniqueness: { scope: :provider }

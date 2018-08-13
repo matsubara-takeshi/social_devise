@@ -14,11 +14,7 @@ gem 'social_devise'
 And then execute:
 ```bash
 $ bundle
-```
-
-Or install it yourself as:
-```bash
-$ gem install social_devise
+$ rails generate social_devise:install
 ```
 
 ## Contributing
