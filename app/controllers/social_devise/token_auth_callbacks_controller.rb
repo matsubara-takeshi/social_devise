@@ -21,8 +21,6 @@ module SocialDevise
         build_new_user if @resource.new_record?
         @resource.social_profiles << @social_profile
       end
-
-      # @resource # これ多分不要なのだが `super` に合わせておく
     end
 
     private
